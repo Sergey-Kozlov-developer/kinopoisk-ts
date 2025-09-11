@@ -28,6 +28,16 @@ export default function Navigation() {
 						</li>
 						<li className="nav__li">
 							<Link
+								to="/actor"
+								className={`nav__link ${
+									isActive("/actor") ? "active" : ""
+								}`}
+							>
+								Актеры
+							</Link>
+						</li>
+						<li className="nav__li">
+							<Link
 								to="/about"
 								className={`nav__link ${
 									isActive("/about") ? "active" : ""
@@ -46,15 +56,7 @@ export default function Navigation() {
 								Детальная нформация
 							</Link>
 						</li>
-						{/* <li className="nav__li">
-							<Link
-								to="#!"
-								className={`nav__link ${
-									isActive("/") ? "active" : ""
-								}`}
-							>
-								Services
-							</Link> */}
+
 						{/* <ul className="nav-dropdown">
 								<li className="nav__li">
 									<a href="#!">Web Design</a>
