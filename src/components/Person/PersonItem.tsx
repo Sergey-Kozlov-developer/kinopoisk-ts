@@ -9,11 +9,11 @@ interface PersonItemProps {
 export default function PersonItem({ person }: PersonItemProps) {
 	const fixedPhotoUrl = urlImageFixed(person.photo);
 	// Форматирование даты рождения
-	const formatBirthday = (dateString: string) => {
-		if (!dateString) return "Не указано";
-		const options = { day: "numeric", month: "long", year: "numeric" };
-		return new Date(dateString).toLocaleDateString("ru-RU", options);
-	};
+	// const formatBirthday = (dateString: string | number | Date) => {
+	// 	if (!dateString) return "Не указано";
+	// 	const options = { day: "numeric", month: "long", year: "numeric" };
+	// 	return new Date(dateString).toLocaleDateString("ru-RU", options);
+	// };
 
 	// Получение иконки для пола
 	const getGenderIcon = () => {
@@ -48,9 +48,13 @@ export default function PersonItem({ person }: PersonItemProps) {
 				<h3 className="actor-card__name">{person.name}</h3>
 				<p className="actor-card__en-name">{person.enName}</p>
 
-				<div className="actor-card__birthday">
+				{/* <div className="actor-card__birthday">
 					<span className="actor-card__label">Дата рождения:</span>
 					<span>{formatBirthday(person.birthday)}</span>
+				</div> */}
+				<div className="actor-card__birthday">
+					<span className="actor-card__label">Возраст:</span>
+					<span>{person.age ?? "неизвестно"}</span>
 				</div>
 
 				{mainMovies.length > 0 && (

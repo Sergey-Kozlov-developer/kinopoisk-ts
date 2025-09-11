@@ -4,6 +4,7 @@ export interface Person {
 	enName: string;
 	photo: string;
 	sex: string;
+	age: number;
 	birthday: string;
 	movies: Array<{
 		id: number;
