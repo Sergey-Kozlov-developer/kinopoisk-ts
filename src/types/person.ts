@@ -5,13 +5,13 @@ export interface Person {
 	photo: string;
 	sex: string;
 	birthday: string;
-	movie: {
+	movies: Array<{
 		id: number;
 		name: string;
 		alternativeName: string;
 		rating: number;
 		enProfession: string;
-	};
+	}>;
 }
 
 /**

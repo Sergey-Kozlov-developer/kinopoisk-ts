@@ -1,5 +1,5 @@
 import { Person } from "../../types/person";
-import noImage from "@/assets/images/no-image.webp";
+// import noImage from "@/assets/images/no-image.webp";
 import { urlImageFixed } from "../../utils/urlImageFixed";
 
 interface PersonItemProps {
@@ -8,77 +8,73 @@ interface PersonItemProps {
 
 export default function PersonItem({ person }: PersonItemProps) {
 	const fixedPhotoUrl = urlImageFixed(person.photo);
+	// Форматирование даты рождения
+	const formatBirthday = (dateString: string) => {
+		if (!dateString) return "Не указано";
+		const options = { day: "numeric", month: "long", year: "numeric" };
+		return new Date(dateString).toLocaleDateString("ru-RU", options);
+	};
+
+	// Получение иконки для пола
+	const getGenderIcon = () => {
+		return person.sex === "Женский" ? "♀" : "♂";
+	};
+
+	// Фильтрация только тех фильмов, где актер был в главной роли
+	const mainMovies = Array.isArray(person.movies)
+		? person.movies
+				.filter(
+					(movie) =>
+						movie.enProfession === "actor" ||
+						movie.enProfession === "producer"
+				)
+				.slice(0, 3)
+		: []; // Показываем только первые 3 фильма
 	return (
-		<div className="movie-card">
-			{/* IMAGE FILM */}
-
-			<div className="movie-img-container">
-				{person.photo ? (
-					<img
-						src={fixedPhotoUrl}
-						alt={person.enName}
-						className="movie-img"
-					/>
-				) : (
-					<img src={noImage} className="movie-img no-image" />
-				)}
-				<div className="movie-overlay"></div>
+		<div className="actor-card">
+			<div className="actor-card__image-container">
+				<img
+					src={fixedPhotoUrl}
+					alt={person.name}
+					className="actor-card__image"
+					// onError={(e) => {
+					// 	e.target.src = "/placeholder-actor.jpg";
+					// }}
+				/>
+				<div className="actor-card__gender">{getGenderIcon()}</div>
 			</div>
-			<div className="movie-content">
-				{/* NAME FILM */}
-				<div className="title-row">
-					<h1 className="movie-title">
-						{person.name ?? person.enName}
-						<span className="year-badge">{person.birthday}</span>
-					</h1>
-					{/* RATING */}
-					{/* {movie.ageRating ? (
-						<span className="rating-badge">{movie.ageRating}</span>
-					) : (
-						<span></span>
-					)} */}
+
+			<div className="actor-card__content">
+				<h3 className="actor-card__name">{person.name}</h3>
+				<p className="actor-card__en-name">{person.enName}</p>
+
+				<div className="actor-card__birthday">
+					<span className="actor-card__label">Дата рождения:</span>
+					<span>{formatBirthday(person.birthday)}</span>
 				</div>
-				{/* TIME FILMS */}
-				{/* <div className="metadata">
-					<div className="duration">
-						<svg className="duration-icon" viewBox="0 0 24 24">
-							<path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
-							<path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-						</svg>
-						{formatDuration(movie.movieLength)}
+
+				{mainMovies.length > 0 && (
+					<div className="actor-card__movies">
+						<p className="actor-card__label">Известные фильмы:</p>
+						<ul className="actor-card__movies-list">
+							{mainMovies.map((movie) => (
+								<li
+									key={movie.id}
+									className="actor-card__movie-item"
+								>
+									<span className="actor-card__movie-name">
+										{movie.name || movie.alternativeName}
+									</span>
+									{movie.rating && (
+										<span className="actor-card__movie-rating">
+											{movie.rating.toFixed(1)}
+										</span>
+									)}
+								</li>
+							))}
+						</ul>
 					</div>
-				</div> */}
-				{/* GENRE FILM */}
-				{/* <div className="genres">
-					{movie.genres.map((genre, index) => (
-						<span key={index} className="genre-tag">
-							{genre.name}
-						</span>
-					))}
-				</div> */}
-
-				{/* <div className="description-section">
-					<h5 className="section-title">SUMMARY</h5>
-					<p className="movie-description" id="description">
-						
-					</p>
-				</div> */}
-
-				{/* <div className="action-row">
-					<div className="watch-btn">
-						<svg
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="white"
-						>
-							<path d="M8 5v14l11-7z" />
-						</svg>
-						<span className="watch-btn-text">WATCH TRAILER</span>
-					</div>
-
-					
-				</div> */}
+				)}
 			</div>
 		</div>
 	);

@@ -7,7 +7,7 @@ interface PersonProps {
 
 export default function PersonList({ persons }: PersonProps) {
 	return (
-		<div className="movie__list">
+		<div className="actors-grid">
 			{persons.map((person) => (
 				<PersonItem key={person.id} person={person} />
 			))}
