@@ -1,18 +1,21 @@
 import { Person } from "../../types/person";
 import noImage from "@/assets/images/no-image.webp";
+import { urlImageFixed } from "../../utils/urlImageFixed";
 
 interface PersonItemProps {
 	person: Person;
 }
 
 export default function PersonItem({ person }: PersonItemProps) {
+	const fixedPhotoUrl = urlImageFixed(person.photo);
 	return (
 		<div className="movie-card">
 			{/* IMAGE FILM */}
+
 			<div className="movie-img-container">
 				{person.photo ? (
 					<img
-						src={person.photo}
+						src={fixedPhotoUrl}
 						alt={person.enName}
 						className="movie-img"
 					/>
@@ -57,12 +60,11 @@ export default function PersonItem({ person }: PersonItemProps) {
 				{/* <div className="description-section">
 					<h5 className="section-title">SUMMARY</h5>
 					<p className="movie-description" id="description">
-						{movie.description ??
-							"У фильма временно отсуствует описание"}
+						
 					</p>
-				</div>
+				</div> */}
 
-				<div className="action-row">
+				{/* <div className="action-row">
 					<div className="watch-btn">
 						<svg
 							width="16"

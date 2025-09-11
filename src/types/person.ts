@@ -5,6 +5,13 @@ export interface Person {
 	photo: string;
 	sex: string;
 	birthday: string;
+	movie: {
+		id: number;
+		name: string;
+		alternativeName: string;
+		rating: number;
+		enProfession: string;
+	};
 }
 
 /**

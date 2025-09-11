@@ -1,16 +1,20 @@
-import { useState } from "react";
+// import { useState } from "react";
 import PersonList from "../../components/Person";
 import { useKinopoiskApi } from "../../hooks";
 import { Person } from "../../types/person";
+import Pagination from "../../components/Paginate/PaginateList";
 
 export default function PersonPage() {
-	const [selectedEndPoint] = useState("person");
-	const [params] = useState({ limit: 10 });
+	// const [selectedEndPoint] = useState("person");
+	// const [params] = useState({ limit: 10 });
 	const {
 		data: persons,
 		loading,
 		error,
-	} = useKinopoiskApi<Person>(selectedEndPoint, params);
+		currentPage,
+		onPageChange,
+		totalPgae,
+	} = useKinopoiskApi<Person>("person", {});
 	return (
 		<>
 			<div className="wrapper">
@@ -19,6 +23,11 @@ export default function PersonPage() {
 					<div className="status-message error">Ошибка: {error}</div>
 				)}
 				{!loading && !error && <PersonList persons={persons} />}
+				<Pagination
+					currentPage={currentPage}
+					totalPage={totalPgae}
+					onChangePage={onPageChange}
+				/>
 			</div>
 		</>
 	);

@@ -9,7 +9,7 @@ export default function PersonList({ persons }: PersonProps) {
 	return (
 		<div className="movie__list">
 			{persons.map((person) => (
-				<PersonItem person={person} />
+				<PersonItem key={person.id} person={person} />
 			))}
 		</div>
 	);

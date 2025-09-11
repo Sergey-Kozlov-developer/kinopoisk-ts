@@ -15,8 +15,12 @@
 
 // ? Подключение стилей шапки
 @forward "blocks/home/home";
+
 // ? Подключение стилей movie
 @forward "blocks/movie/movie";
+
+// ? Подключение стилей pagination
+@forward "blocks/pagination/pagination";
 
 // ? Подключение стилей main
 @forward "blocks/wrapper/main";
