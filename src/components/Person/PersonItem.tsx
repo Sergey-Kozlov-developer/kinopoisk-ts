@@ -21,15 +21,15 @@ export default function PersonItem({ person }: PersonItemProps) {
 	};
 
 	// Фильтрация только тех фильмов, где актер был в главной роли
-	const mainMovies = Array.isArray(person.movies)
-		? person.movies
-				.filter(
-					(movie) =>
-						movie.enProfession === "actor" ||
-						movie.enProfession === "producer"
-				)
-				.slice(0, 3)
-		: []; // Показываем только первые 3 фильма
+	// const mainMovies = Array.isArray(person.movies)
+	// 	? person.movies
+	// 			.filter(
+	// 				(movie) =>
+	// 					movie.enProfession === "actor" ||
+	// 					movie.enProfession === "producer"
+	// 			)
+	// 			.slice(0, 3)
+	// 	: []; // Показываем только первые 3 фильма
 	return (
 		<div className="actor-card">
 			<div className="actor-card__image-container">
@@ -57,7 +57,7 @@ export default function PersonItem({ person }: PersonItemProps) {
 					<span>{person.age ?? "неизвестно"}</span>
 				</div>
 
-				{mainMovies.length > 0 && (
+				{/* {mainMovies.length > 0 && (
 					<div className="actor-card__movies">
 						<p className="actor-card__label">Известные фильмы:</p>
 						<ul className="actor-card__movies-list">
@@ -78,7 +78,7 @@ export default function PersonItem({ person }: PersonItemProps) {
 							))}
 						</ul>
 					</div>
-				)}
+				)} */}
 			</div>
 		</div>
 	);
