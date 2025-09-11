@@ -5,7 +5,7 @@ export default function Layout() {
 	return (
 		<>
 			<Navigation />
-			<main className="container">
+			<main>
 				<Outlet />
 			</main>
 		</>

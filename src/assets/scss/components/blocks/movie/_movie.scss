@@ -328,9 +328,7 @@
 .movie__list {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	padding: 20px;
+	column-gap: 40px;
 	max-width: 1680px;
 	margin: 0 auto;
-	// flex-direction: column;
-	// justify-content: space-between;
 }

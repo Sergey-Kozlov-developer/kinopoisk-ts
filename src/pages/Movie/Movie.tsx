@@ -13,7 +13,7 @@ function Movie() {
 	} = useKinopoiskApi<Movie>(selectedEndpoint, params);
 
 	return (
-		<div>
+		<div className="wrapper">
 			{loading && <div className="status-message">Загрузка...</div>}
 			{error && (
 				<div className="status-message error">Ошибка: {error}</div>
