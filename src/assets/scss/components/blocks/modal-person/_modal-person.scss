@@ -1,0 +1,188 @@
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	padding: 20px;
+}
+
+.modal-content {
+	background: white;
+	border-radius: 12px;
+	max-width: 600px;
+	width: 100%;
+	max-height: 80vh;
+	overflow-y: auto;
+	position: relative;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	background: none;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	transition: background-color 0.2s;
+
+	&:hover {
+		background-color: #f0f0f0;
+	}
+}
+
+.modal-header {
+	display: flex;
+	padding: 20px;
+	border-bottom: 1px solid #eee;
+	align-items: center;
+}
+
+.modal-actor-image {
+	width: 100px;
+	height: 140px;
+	object-fit: cover;
+	border-radius: 8px;
+	margin-right: 20px;
+}
+
+.modal-actor-info {
+	flex: 1;
+}
+
+.modal-actor-info h2 {
+	margin: 0 0 5px 0;
+	font-size: 1.5rem;
+	color: #333;
+}
+
+.modal-actor-enname {
+	margin: 0;
+	color: #666;
+	font-style: italic;
+}
+
+.modal-body {
+	padding: 20px;
+}
+
+.modal-details {
+	margin-bottom: 25px;
+}
+
+.detail-item {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	padding: 8px 0;
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.detail-label {
+	font-weight: 600;
+	color: #555;
+}
+
+.detail-value {
+	color: #333;
+}
+
+.modal-movies h3 {
+	margin: 0 0 15px 0;
+	color: #333;
+	font-size: 1.2rem;
+}
+
+.movies-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.movie-item {
+	padding: 12px;
+	background-color: #f9f9f9;
+	border-radius: 6px;
+	border-left: 4px solid #007bff;
+}
+
+.movie-title {
+	margin: 0 0 8px 0;
+	font-size: 1rem;
+	color: #333;
+}
+
+.movie-details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.movie-profession {
+	font-size: 0.9rem;
+	color: #666;
+	text-transform: capitalize;
+}
+
+.movie-rating {
+	background-color: #007bff;
+	color: white;
+	padding: 3px 8px;
+	border-radius: 12px;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+// Стили для кнопки в карточке
+.actor-card__details-btn {
+	margin-top: 15px;
+	padding: 10px 15px;
+	background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: transform 0.2s, box-shadow 0.2s;
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(38, 117, 252, 0.3);
+	}
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+	.modal-content {
+		max-width: 90%;
+		margin: 20px;
+	}
+
+	.modal-header {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.modal-actor-image {
+		margin-right: 0;
+		margin-bottom: 15px;
+	}
+
+	.detail-item {
+		flex-direction: column;
+		gap: 5px;
+	}
+}

@@ -5,18 +5,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { setCurrentPage } from "../redux/filter/slice";
+import { ApiResponse } from "./type";
 
 // API ключ и URL
 const API_KEY = import.meta.env.VITE_REACT_APP_LOTR_API_KEY;
 const BASE_URL = "https://api.kinopoisk.dev/v1.4";
-// Интерфейс для ответа API
-interface ApiResponse<T> {
-	docs: T[];
-	total: number;
-	limit: number;
-	page: number;
-	pages: number;
-}
+
 export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 	// получение данных
 	const [data, setData] = useState<T[]>([]);
@@ -43,6 +37,7 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
+				// весь список
 				const response = await axios.get<ApiResponse<T>>(
 					`${BASE_URL}/${endpoint}?page=${currentPage}`,
 					{

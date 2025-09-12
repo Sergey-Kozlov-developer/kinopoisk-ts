@@ -14,7 +14,16 @@ export interface Person {
 		enProfession: string;
 	}>;
 }
+// export interface PersonID {
 
+// 	movies: Array<{
+// 		id: number;
+// 		name: string;
+// 		alternativeName: string;
+// 		rating: number;
+// 		enProfession: string;
+// 	}>;
+// }
 /**
  * 
  * {

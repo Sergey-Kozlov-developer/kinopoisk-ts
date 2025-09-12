@@ -4,9 +4,10 @@ import { urlImageFixed } from "../../utils/urlImageFixed";
 
 interface PersonItemProps {
 	person: Person;
+	onClick: (person: Person) => void;
 }
 
-export default function PersonItem({ person }: PersonItemProps) {
+export default function PersonItem({ person, onClick }: PersonItemProps) {
 	const fixedPhotoUrl = urlImageFixed(person.photo);
 	// Форматирование даты рождения
 	// const formatBirthday = (dateString: string | number | Date) => {
@@ -19,27 +20,17 @@ export default function PersonItem({ person }: PersonItemProps) {
 	const getGenderIcon = () => {
 		return person.sex === "Женский" ? "♀" : "♂";
 	};
+	const handleClick = () => {
+		onClick(person);
+	};
 
-	// Фильтрация только тех фильмов, где актер был в главной роли
-	// const mainMovies = Array.isArray(person.movies)
-	// 	? person.movies
-	// 			.filter(
-	// 				(movie) =>
-	// 					movie.enProfession === "actor" ||
-	// 					movie.enProfession === "producer"
-	// 			)
-	// 			.slice(0, 3)
-	// 	: []; // Показываем только первые 3 фильма
 	return (
 		<div className="actor-card">
 			<div className="actor-card__image-container">
 				<img
 					src={fixedPhotoUrl}
-					alt={person.name}
+					alt={person.name || person.enName}
 					className="actor-card__image"
-					// onError={(e) => {
-					// 	e.target.src = "/placeholder-actor.jpg";
-					// }}
 				/>
 				<div className="actor-card__gender">{getGenderIcon()}</div>
 			</div>
@@ -56,29 +47,12 @@ export default function PersonItem({ person }: PersonItemProps) {
 					<span className="actor-card__label">Возраст:</span>
 					<span>{person.age ?? "неизвестно"}</span>
 				</div>
-
-				{/* {mainMovies.length > 0 && (
-					<div className="actor-card__movies">
-						<p className="actor-card__label">Известные фильмы:</p>
-						<ul className="actor-card__movies-list">
-							{mainMovies.map((movie) => (
-								<li
-									key={movie.id}
-									className="actor-card__movie-item"
-								>
-									<span className="actor-card__movie-name">
-										{movie.name || movie.alternativeName}
-									</span>
-									{movie.rating && (
-										<span className="actor-card__movie-rating">
-											{movie.rating.toFixed(1)}
-										</span>
-									)}
-								</li>
-							))}
-						</ul>
-					</div>
-				)} */}
+				<button
+					className="actor-card__details-btn"
+					onClick={handleClick}
+				>
+					Подробно об актере
+				</button>
 			</div>
 		</div>
 	);
