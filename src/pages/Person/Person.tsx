@@ -16,29 +16,26 @@ export default function PersonPage() {
 		onPageChange,
 		totalPgae,
 	} = useKinopoiskApi<Person>("person", {});
-	const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedPersonId, setSelectedPersonId] = useState<number | null>(
 		null
 	);
 
-	// Используем отдельный хук для получения детальной информации
+	// отдельный хук для получения детальной информации
 	const {
 		data: detailedPerson,
 		loading: isDetailsLoading,
 		error: detailsError,
 	} = useKinopoiskSingle<Person>("person", selectedPersonId);
-
+	// Клик по актеру с ID
 	const handlePersonClick = (person: Person) => {
-		setSelectedPerson(person);
 		setSelectedPersonId(person.id);
 		setIsModalOpen(true);
 	};
-
+	// Закрытие модального окна
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 		setSelectedPersonId(null);
-		setSelectedPerson(null);
 	};
 	return (
 		<>
@@ -61,7 +58,8 @@ export default function PersonPage() {
 			</div>
 			{isModalOpen && (
 				<PersonDetailsModal
-					person={detailedPerson || selectedPerson}
+					// person={detailedPerson || selectedPerson}
+					person={detailedPerson}
 					loading={isDetailsLoading}
 					error={detailsError}
 					onClose={handleCloseModal}

@@ -1,18 +1,13 @@
 import type { Movie } from "../../types/movie";
 
 import noImage from "@/assets/images/no-image.webp";
+import { formatDuration } from "../../utils/formatDuration";
 
 interface MovieItemProps {
 	movie: Movie;
 }
 
 export default function MovieComponent({ movie }: MovieItemProps) {
-	const formatDuration = (minutes: number) => {
-		if (!minutes) return "Длительность неизвестна";
-		const hours = Math.floor(minutes / 60);
-		const mins = minutes % 60;
-		return `${hours}ч ${mins}мин`;
-	};
 	return (
 		<div className="movie-card">
 			{/* IMAGE FILM */}

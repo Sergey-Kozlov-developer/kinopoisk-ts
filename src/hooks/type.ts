@@ -6,6 +6,6 @@ export interface ApiResponse<T> {
 	page: number;
 	pages: number;
 }
-export interface SingleApiResponse<T> {
-	data: T;
-}
+// export interface SingleApiResponse<T> {
+// 	data: T;
+// }

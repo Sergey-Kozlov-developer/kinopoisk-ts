@@ -1,4 +1,5 @@
 import { Person } from "../../types/person";
+import { formatBirthday } from "../../utils/formatBirthday";
 import { urlImageFixed } from "../../utils/urlImageFixed";
 
 interface PersonDetailsModalProps {
@@ -15,21 +16,6 @@ export default function PersonDetailsModal({
 	error,
 }: PersonDetailsModalProps) {
 	const fixedPhotoUrl = person ? urlImageFixed(person.photo) : "";
-
-	// Форматирование даты рождения
-	const formatBirthday = (dateString: string) => {
-		if (!dateString) return "Не указано";
-		try {
-			const options: Intl.DateTimeFormatOptions = {
-				day: "numeric",
-				month: "long",
-				year: "numeric",
-			};
-			return new Date(dateString).toLocaleDateString("ru-RU", options);
-		} catch (e) {
-			return "Неверный формат даты";
-		}
-	};
 
 	// Получение иконки для пола
 	const getGenderIcon = () => {

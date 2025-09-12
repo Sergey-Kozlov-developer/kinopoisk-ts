@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SingleApiResponse } from "./type";
+// import { SingleApiResponse } from "./type";
 import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_LOTR_API_KEY;
@@ -19,8 +19,9 @@ export function useKinopoiskSingle<T>(endpoint: string, id?: number | null) {
 
 		const fetchData = async () => {
 			setLoading(true);
+			setError(null);
 			try {
-				const response = await axios.get<SingleApiResponse<T>>(
+				const response = await axios.get<T>(
 					`${BASE_URL}/${endpoint}/${id}`,
 					{
 						headers: {
@@ -29,7 +30,18 @@ export function useKinopoiskSingle<T>(endpoint: string, id?: number | null) {
 						},
 					}
 				);
-				setData(response.data.data);
+
+				// Проверяем структуру ответа
+				if (response.data && response.data) {
+					setData(response.data);
+				} else {
+					console.error(
+						"Неверная структура ответа API:",
+						response.data
+					);
+					setError("Неверная структура данных от API");
+				}
+				setData(response.data);
 				setError(null);
 			} catch (error) {
 				setError(
