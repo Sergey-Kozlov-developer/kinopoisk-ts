@@ -59,9 +59,9 @@ export default function PersonPage() {
 					onChangePage={onPageChange}
 				/>
 			</div>
-			{isModalOpen && selectedPerson && (
+			{isModalOpen && (
 				<PersonDetailsModal
-					person={detailedPerson}
+					person={detailedPerson || selectedPerson}
 					loading={isDetailsLoading}
 					error={detailsError}
 					onClose={handleCloseModal}
