@@ -10,8 +10,8 @@ html {
 
 .wrapper {
 	min-height: 100%;
-	@include mix.flex(null, null, column);
-	overflow-x: clip;
+	// @include mix.flex(null, null, column);
+	// overflow-x: clip;
 
 	// Фикс для слайдеров
 	> * {
