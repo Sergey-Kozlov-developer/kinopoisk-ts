@@ -6,6 +6,7 @@ import Pagination from "../../components/Paginate";
 import { useState } from "react";
 import { useKinopoiskSingle } from "../../hooks/useKinopoiskSingle";
 import MovieDetailsModal from "./MovieDetailsModal";
+import Search from "../../components/Search";
 
 function Movie() {
 	// const [selectedEndpoint] = useState("movie");
@@ -40,6 +41,8 @@ function Movie() {
 
 	return (
 		<div className="wrapper">
+			<Search />
+
 			{loading && <div className="status-message">Загрузка...</div>}
 			{error && (
 				<div className="status-message error">Ошибка: {error}</div>
