@@ -136,7 +136,7 @@
 	}
 
 	&__rating {
-		background-color: var(--brand-color);
+		// background-color: var(--brand-color);
 		color: white;
 		padding: 4px 8px;
 		border-radius: 6px;
@@ -209,6 +209,8 @@
 
 	&__stars {
 		display: flex;
+		align-items: center;
+		color: #fff;
 		gap: 2px;
 	}
 
@@ -227,9 +229,10 @@
 	}
 
 	&__rating-text {
+		padding-left: 10px;
 		font-size: 12px;
 		font-weight: 600;
-		color: var(--text-lighter);
+		color: wheat;
 	}
 
 	&__likes {

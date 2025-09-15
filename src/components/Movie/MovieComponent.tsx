@@ -61,91 +61,47 @@ export default function MovieComponent({ movie }: MovieItemProps) {
 						</span>
 					))}
 				</div>
-
+				{/* РЕЙТИНГ */}
 				<div className="movie-card__ratings-row">
 					<div className="movie-card__star-rating">
-						<div className="movie-card__stars">
-							<svg
-								className="movie-card__star movie-card__star--filled"
-								viewBox="0 0 24 24"
-							>
-								<path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-							</svg>
-							<svg
-								className="movie-card__star movie-card__star--filled"
-								viewBox="0 0 24 24"
-							>
-								<path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-							</svg>
-							<svg
-								className="movie-card__star movie-card__star--filled"
-								viewBox="0 0 24 24"
-							>
-								<path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-							</svg>
-							<svg
-								className="movie-card__star movie-card__star--filled"
-								viewBox="0 0 24 24"
-							>
-								<path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-							</svg>
-							<svg
-								className="movie-card__star movie-card__star--half"
-								viewBox="0 0 24 24"
-							>
-								<path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
-							</svg>
-						</div>
-						<span className="movie-card__rating-text">8.9/10</span>
-					</div>
-
-					<div className="movie-card__likes">
-						<svg
-							className="movie-card__heart-icon"
-							viewBox="0 0 24 24"
-						>
-							<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-						</svg>
-						<span className="movie-card__likes-count">2.3M</span>
+						{movie.rating?.kp && (
+							<div className="movie-card__stars">
+								Рейтинг (kp):
+								<span className="movie-card__rating-text">
+									{movie.rating.kp ?? "нет информации"}
+								</span>
+							</div>
+						)}
+						{movie.rating?.imdb && (
+							<div className="movie-card__stars">
+								Рейтинг (imdb):
+								<span className="movie-card__rating-text">
+									{movie.rating.imdb ?? "нет информации"}
+								</span>
+							</div>
+						)}
+						{!movie.rating?.kp && !movie.rating?.imdb && (
+							<div className="movie-card__stars">
+								Рейтинг: нет информации
+							</div>
+						)}
 					</div>
 				</div>
 
 				<div className="movie-card__description">
-					<h5 className="movie-card__description-title">SUMMARY</h5>
+					<h5 className="movie-card__description-title">
+						{movie.name || movie.alternativeName}
+					</h5>
 					<p className="movie-card__description-text">
 						{movie.description ??
 							"У фильма временно отсуствует описание"}
 					</p>
 				</div>
 
-				{/* <div className="movie-card__cast">
-          <h5 className="movie-card__cast-title">Актеры</h5>
-          <div className="movie-card__cast-list">
-            {movie.persons.map((person, index) => (
-              <div key={index} className="movie-card__cast-item">
-                <img
-                  src={person.photo}
-                  className="movie-card__cast-photo"
-                  alt=""
-                />
-                <span className="movie-card__cast-name">{person.name}</span>
-              </div>
-            ))}
-          </div>
-        </div> */}
-
 				<div className="movie-card__actions">
 					<button className="movie-card__watch-btn">
-						<svg
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="white"
-						>
-							<path d="M8 5v14l11-7z" />
-						</svg>
 						<span className="movie-card__watch-btn-text">
-							WATCH TRAILER
+							Подробнее
 						</span>
 					</button>
 
