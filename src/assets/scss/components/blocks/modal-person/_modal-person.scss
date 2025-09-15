@@ -123,6 +123,16 @@
 	border-radius: 6px;
 	border-left: 4px solid #007bff;
 }
+.movies-details {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: row-reverse;
+	// padding: 12px;
+	background-color: #f9f9f9;
+	border-radius: 6px;
+	border-left: 4px solid #007bff;
+}
 
 .movie-title {
 	margin: 0 0 8px 0;

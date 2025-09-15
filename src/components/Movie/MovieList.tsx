@@ -3,13 +3,18 @@ import MovieComponent from "./MovieComponent";
 
 interface MovieListProps {
 	movies: Movie[];
+	onMovieClick: (movie: Movie) => void;
 }
 
-export default function MovieList({ movies }: MovieListProps) {
+export default function MovieList({ movies, onMovieClick }: MovieListProps) {
 	return (
 		<div className="movie__list">
 			{movies.map((movie) => (
-				<MovieComponent key={movie.id} movie={movie} />
+				<MovieComponent
+					key={movie.id}
+					movie={movie}
+					onClick={onMovieClick}
+				/>
 			))}
 		</div>
 	);

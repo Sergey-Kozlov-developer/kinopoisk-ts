@@ -25,7 +25,11 @@ export interface Movie {
 		name: string;
 	}>;
 	persons: Array<{
-		name: string;
+		id: number;
 		photo: string;
+		name: string;
+		enName: string;
+		description: string;
+		enProfession: string;
 	}>;
 }

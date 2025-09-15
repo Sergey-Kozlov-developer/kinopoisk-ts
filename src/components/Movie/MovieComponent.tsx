@@ -5,9 +5,14 @@ import { formatDuration } from "../../utils/formatDuration";
 
 interface MovieItemProps {
 	movie: Movie;
+	onClick: (movie: Movie) => void;
 }
 
-export default function MovieComponent({ movie }: MovieItemProps) {
+export default function MovieComponent({ movie, onClick }: MovieItemProps) {
+	// клик по кнопке Подробнее
+	const handleClick = () => {
+		onClick(movie);
+	};
 	return (
 		<div className="movie-card">
 			{/* IMAGE FILM */}
@@ -99,7 +104,10 @@ export default function MovieComponent({ movie }: MovieItemProps) {
 				</div>
 				{/* DETAIL */}
 				<div className="movie-card__actions">
-					<button className="movie-card__watch-btn">
+					<button
+						onClick={handleClick}
+						className="movie-card__watch-btn"
+					>
 						<span className="movie-card__watch-btn-text">
 							Подробнее
 						</span>
