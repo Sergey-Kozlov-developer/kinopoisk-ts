@@ -34,7 +34,7 @@ export default function MovieComponent({ movie }: MovieItemProps) {
 					{/* RATING */}
 					{movie.ageRating && (
 						<span className="movie-card__rating">
-							{movie.ageRating}
+							{movie.ageRating}+
 						</span>
 					)}
 				</div>
@@ -87,7 +87,7 @@ export default function MovieComponent({ movie }: MovieItemProps) {
 						)}
 					</div>
 				</div>
-
+				{/* Description */}
 				<div className="movie-card__description">
 					<h5 className="movie-card__description-title">
 						{movie.name || movie.alternativeName}
@@ -97,7 +97,7 @@ export default function MovieComponent({ movie }: MovieItemProps) {
 							"У фильма временно отсуствует описание"}
 					</p>
 				</div>
-
+				{/* DETAIL */}
 				<div className="movie-card__actions">
 					<button className="movie-card__watch-btn">
 						<span className="movie-card__watch-btn-text">
