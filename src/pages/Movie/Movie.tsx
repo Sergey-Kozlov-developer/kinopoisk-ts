@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useKinopoiskSingle } from "../../hooks/useKinopoiskSingle";
 import MovieDetailsModal from "./MovieDetailsModal";
 import Search from "../../components/Search";
+import Sort from "../../components/sort";
 
 function Movie() {
 	// const [selectedEndpoint] = useState("movie");
@@ -52,6 +53,8 @@ function Movie() {
 					)}
 				</div>
 			)}
+
+			<Sort />
 
 			{loading && <div className="status-message">Загрузка...</div>}
 			{error && (

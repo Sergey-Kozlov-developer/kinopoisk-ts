@@ -1,0 +1,131 @@
+.sort-fields {
+	padding-top: 20px;
+	max-width: 40%;
+	margin: 0 auto;
+	position: relative;
+	margin-bottom: 32px;
+
+	&__btn {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 16px;
+		background: #fff;
+		border: 2px solid #e1e1e1;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		font-size: 14px;
+		font-weight: 500;
+		color: #333;
+		min-width: 200px;
+
+		&:hover {
+			border-color: #f27121;
+			box-shadow: 0 2px 8px rgba(242, 113, 33, 0.1);
+		}
+
+		&:focus {
+			outline: none;
+			border-color: #f27121;
+			box-shadow: 0 0 0 3px rgba(242, 113, 33, 0.1);
+		}
+	}
+
+	&__svg {
+		display: flex;
+		align-items: center;
+		transition: transform 0.3s ease;
+
+		svg {
+			width: 16px;
+			height: 16px;
+			color: #666;
+		}
+
+		// Анимация стрелки при открытии
+		.sort-fields__btn:focus &,
+		.sort-fields--open & {
+			transform: rotate(180deg);
+		}
+	}
+
+	&__ul {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		max-width: 40%;
+		background: #fff;
+		border: 2px solid #e1e1e1;
+		border-radius: 8px;
+		margin-top: 4px;
+		padding: 8px 0;
+		list-style: none;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		z-index: 1000;
+		animation: slideDown 0.3s ease;
+	}
+
+	&__li {
+		padding: 12px 16px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		font-size: 14px;
+		color: #333;
+
+		&:hover {
+			background: #f8f9fa;
+			color: #f27121;
+		}
+
+		// Стиль для активного элемента
+		&.active {
+			background: #f27121;
+			color: #fff;
+			font-weight: 500;
+		}
+
+		// Разделитель между элементами
+		&:not(:last-child) {
+			border-bottom: 1px solid #f1f1f1;
+		}
+	}
+
+	// Модификатор для открытого состояния
+	&--open {
+		.sort-fields__btn {
+			border-color: #f27121;
+			box-shadow: 0 0 0 3px rgba(242, 113, 33, 0.1);
+		}
+	}
+}
+
+// Анимация выпадающего списка
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+	.sort-fields {
+		width: 100%;
+
+		&__btn {
+			width: 100%;
+			justify-content: space-between;
+		}
+
+		&__ul {
+			width: 100%;
+			min-width: auto;
+		}
+	}
+}

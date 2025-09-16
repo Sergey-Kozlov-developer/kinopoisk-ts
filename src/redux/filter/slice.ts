@@ -5,6 +5,10 @@ const initialState: FilterSliceState = {
 	currentPage: 1,
 	searchValue: "",
 	searchMode: false, // нахождение в режиме поиска
+	sortType: {
+		name: "Название фильма",
+		sortProperty: "name",
+	},
 };
 
 const filterSlice = createSlice({
@@ -20,6 +24,9 @@ const filterSlice = createSlice({
 		setSearchMode(state, action: PayloadAction<boolean>) {
 			state.searchMode = action.payload;
 		},
+		setSortType(state, action) {
+			state.sortType = action.payload;
+		},
 		resetSearch(state) {
 			state.searchValue = "";
 			state.searchMode = false;
@@ -28,7 +35,12 @@ const filterSlice = createSlice({
 	},
 });
 
-export const { setCurrentPage, setSearchValue, setSearchMode, resetSearch } =
-	filterSlice.actions;
+export const {
+	setCurrentPage,
+	setSearchValue,
+	setSearchMode,
+	resetSearch,
+	setSortType,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

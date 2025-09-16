@@ -4,5 +4,9 @@ export interface FilterSliceState {
 	currentPage: number;
 	searchValue: string;
 	searchMode: boolean;
+	sortType: {
+		name: string;
+		sortProperty: string;
+	};
 	// sort: Sort;
 }
