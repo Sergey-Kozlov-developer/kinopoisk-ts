@@ -22,7 +22,9 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 	// pagination
 	const [totalPgae, setTotalPage] = useState(0);
 	const dispath = useDispatch();
-	const { currentPage } = useSelector((state: RootState) => state.filter);
+	const { currentPage, searchValue, searchMode } = useSelector(
+		(state: RootState) => state.filter
+	);
 
 	// ПЕРЕДЕЛАТЬ ВШИТИЕ ПАРАМЕТРОВ В URL
 	// первый рендер, парсим параметры из qs
@@ -37,20 +39,29 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
+				let url: string;
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any, prefer-const
+				let params: any = {
+					limit: 20,
+					page: currentPage,
+					...queryParams,
+				};
+				if (searchMode && searchValue) {
+					url = `${BASE_URL}/${endpoint}/search?`;
+					params.query = searchValue;
+					console.log("URL поиска", url);
+				} else {
+					url = `${BASE_URL}/${endpoint}`;
+					console.log("URL обычный", url);
+				}
 				// весь список
-				const response = await axios.get<ApiResponse<T>>(
-					`${BASE_URL}/${endpoint}?page=${currentPage}`,
-					{
-						headers: {
-							accept: "application/json",
-							"X-API-KEY": API_KEY,
-						},
-						params: {
-							...queryParams,
-							limit: 20,
-						},
-					}
-				);
+				const response = await axios.get<ApiResponse<T>>(url, {
+					headers: {
+						accept: "application/json",
+						"X-API-KEY": API_KEY,
+					},
+					params: params,
+				});
 				setData(response.data.docs);
 				setTotalPage(response.data.pages);
 				setError(null);
@@ -65,7 +76,13 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 			}
 		};
 		fetchData();
-	}, [endpoint, currentPage, JSON.stringify(queryParams)]);
+	}, [
+		endpoint,
+		currentPage,
+		searchValue,
+		searchMode,
+		JSON.stringify(queryParams),
+	]);
 
 	const handlePageChange = (page: number) => {
 		dispath(setCurrentPage(page));
@@ -93,6 +110,8 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 		error,
 		loading,
 		currentPage,
+		searchValue,
+		searchMode,
 		totalPgae,
 		onPageChange: handlePageChange,
 	};

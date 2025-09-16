@@ -4,7 +4,7 @@ import { FilterSliceState } from "./type";
 const initialState: FilterSliceState = {
 	currentPage: 1,
 	searchValue: "",
-	searchMode: false,
+	searchMode: false, // нахождение в режиме поиска
 };
 
 const filterSlice = createSlice({

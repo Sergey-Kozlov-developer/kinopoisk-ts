@@ -17,6 +17,8 @@ function Movie() {
 		error,
 		currentPage,
 		onPageChange,
+		searchValue,
+		searchMode,
 		totalPgae,
 	} = useKinopoiskApi<Movie>("movie", {});
 	// Modal
@@ -42,6 +44,14 @@ function Movie() {
 	return (
 		<div className="wrapper">
 			<Search />
+			{searchMode && searchValue && (
+				<div className="search-results-header">
+					<h2>Search results for: "{searchValue}"</h2>
+					{movies.length === 0 && !loading && (
+						<p>No movies found matching your search.</p>
+					)}
+				</div>
+			)}
 
 			{loading && <div className="status-message">Загрузка...</div>}
 			{error && (

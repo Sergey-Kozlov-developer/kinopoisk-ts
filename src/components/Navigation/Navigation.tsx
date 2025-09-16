@@ -7,7 +7,7 @@ export default function Navigation() {
 		<section className="navigation">
 			<div className="nav-container">
 				<div className="brand">
-					<a href="#!">Logo</a>
+					<a href="#!">kinopoisk api</a>
 				</div>
 				<nav>
 					<div className="nav-mobile">
