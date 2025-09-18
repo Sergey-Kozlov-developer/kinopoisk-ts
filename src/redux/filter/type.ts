@@ -7,6 +7,8 @@ export interface FilterSliceState {
 	sortType: {
 		name: string;
 		sortProperty: string;
+		inc: number;
+		dec?: number;
 	};
 	// sort: Sort;
 }

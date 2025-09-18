@@ -22,7 +22,7 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 	// pagination
 	const [totalPgae, setTotalPage] = useState(0);
 	const dispath = useDispatch();
-	const { currentPage, searchValue, searchMode } = useSelector(
+	const { currentPage, searchValue, searchMode, sortType } = useSelector(
 		(state: RootState) => state.filter
 	);
 
@@ -44,16 +44,21 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 				let params: any = {
 					limit: 20,
 					page: currentPage,
+					sortField: sortType.sortProperty,
+					sortType: sortType.inc || sortType.dec,
 					...queryParams,
 				};
+				// console.log(params);
+
 				if (searchMode && searchValue) {
 					url = `${BASE_URL}/${endpoint}/search?`;
 					params.query = searchValue;
 					console.log("URL поиска", url);
 				} else {
 					url = `${BASE_URL}/${endpoint}`;
-					console.log("URL обычный", url);
+					// console.log("URL обычный", url);
 				}
+
 				// весь список
 				const response = await axios.get<ApiResponse<T>>(url, {
 					headers: {
@@ -81,6 +86,7 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 		currentPage,
 		searchValue,
 		searchMode,
+		sortType,
 		JSON.stringify(queryParams),
 	]);
 
@@ -113,6 +119,7 @@ export function useKinopoiskApi<T>(endpoint: string, queryParams = {}) {
 		searchValue,
 		searchMode,
 		totalPgae,
+		sortType,
 		onPageChange: handlePageChange,
 	};
 }

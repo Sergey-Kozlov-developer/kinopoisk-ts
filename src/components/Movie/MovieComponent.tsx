@@ -1,4 +1,4 @@
-import type { Movie } from "../../types/movie";
+import { Movie } from "../../types/movie";
 
 import noImage from "@/assets/images/no-image.webp";
 import { formatDuration } from "../../utils/formatDuration";
@@ -59,13 +59,13 @@ export default function MovieComponent({ movie, onClick }: MovieItemProps) {
 				</div>
 
 				{/* GENRE FILM */}
-				<div className="movie-card__genres">
+				{/* <div className="movie-card__genres">
 					{movie.genres.map((genre, index) => (
 						<span key={index} className="movie-card__genre">
 							{genre.name}
 						</span>
 					))}
-				</div>
+				</div> */}
 				{/* РЕЙТИНГ */}
 				<div className="movie-card__ratings-row">
 					<div className="movie-card__star-rating">

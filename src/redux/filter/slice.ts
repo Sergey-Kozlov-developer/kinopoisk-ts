@@ -7,7 +7,8 @@ const initialState: FilterSliceState = {
 	searchMode: false, // нахождение в режиме поиска
 	sortType: {
 		name: "Название фильма",
-		sortProperty: "name",
+		sortProperty: "year",
+		inc: 1,
 	},
 };
 

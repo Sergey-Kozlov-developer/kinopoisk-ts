@@ -8,8 +8,10 @@ export default function Sort() {
 	const { sortType } = useSelector((state: RootState) => state.filter);
 	const dispatch = useDispatch();
 	const list = [
-		{ name: "Название фильма", sortProperty: "name" },
-		{ name: "Год", sortProperty: "year" },
+		{ name: "Название фильма ⬆️", sortProperty: "name", inc: 1 },
+		{ name: "Название фильма ⬇️", sortProperty: "name", inc: -1 },
+		{ name: "Год ⬆️", sortProperty: "year", inc: 1 },
+		{ name: "Год ⬇️", sortProperty: "year", dec: -1 },
 	];
 
 	const onClickItem = (item: (typeof list)[0]) => {
@@ -41,7 +43,7 @@ export default function Sort() {
 					{list.map((item) => (
 						<li
 							className={
-								sortType.sortProperty === item.sortProperty
+								sortType.inc === item.inc
 									? "sort-fields__li active"
 									: "sort-fields__li"
 							}
